@@ -1,7 +1,14 @@
 <template>
-  <div class="relative flex flex-col border border-neutral-200 rounded-xl bg-white shadow-sm overflow-hidden">
-    <div class="pt-6 px-6 flex flex-col items-start pointer-events-none" v-if="renderChart">
-      <span class="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-1">
+  <div
+    class="relative flex flex-col border border-neutral-200 rounded-xl bg-white shadow-sm overflow-hidden"
+  >
+    <div
+      class="pt-6 px-6 flex flex-col items-start pointer-events-none"
+      v-if="renderChart"
+    >
+      <span
+        class="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-1"
+      >
         {{ title }}
       </span>
     </div>
@@ -57,13 +64,7 @@ const sortedData = computed(() => {
 });
 
 const rankingOption = computed(() => ({
-  tooltip: {
-    trigger: "axis",
-    axisPointer: { type: "shadow" },
-    backgroundColor: "rgba(255, 255, 255, 0.95)",
-    padding: [10, 15],
-    textStyle: { color: "#374151" },
-  },
+  tooltip: {},
   grid: {
     top: "10%",
     left: "5%",
