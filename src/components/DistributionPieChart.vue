@@ -1,7 +1,14 @@
 <template>
-  <div class="relative flex flex-col border border-neutral-200 rounded-xl bg-white shadow-sm overflow-hidden">
-    <div class="pt-6 px-6 flex flex-col items-start pointer-events-none" v-if="renderChart">
-      <span class="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-1">
+  <div
+    class="relative flex flex-col border border-neutral-200 rounded-xl bg-white shadow-sm overflow-hidden"
+  >
+    <div
+      class="pt-6 px-6 flex flex-col items-start pointer-events-none"
+      v-if="renderChart"
+    >
+      <span
+        class="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-1"
+      >
         {{ title }}
       </span>
     </div>
@@ -19,10 +26,7 @@ import { ref, onMounted, nextTick, computed } from "vue";
 import { use } from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
 import { PieChart } from "echarts/charts";
-import {
-  TooltipComponent,
-  LegendComponent,
-} from "echarts/components";
+import { TooltipComponent, LegendComponent } from "echarts/components";
 import VChart from "vue-echarts";
 
 use([CanvasRenderer, PieChart, TooltipComponent, LegendComponent]);
@@ -56,7 +60,7 @@ const pieOption = computed(() => ({
     backgroundColor: "rgba(255, 255, 255, 0.95)",
     padding: [10, 15],
     textStyle: { color: "#374151" },
-    formatter: "{b}: <b>{c}</b> ({d}%)"
+    formatter: "{b}: <b>{c}</b> ({d}%)",
   },
   legend: {
     bottom: "5%",
@@ -71,25 +75,33 @@ const pieOption = computed(() => ({
       name: props.title,
       type: "pie",
       radius: ["40%", "70%"],
-      avoidLabelOverlap: false,
+      avoidLabelOverlap: true,
       itemStyle: {
         borderRadius: 10,
         borderColor: "#fff",
         borderWidth: 2,
       },
       label: {
-        show: false,
-        position: "center",
-      },
-      emphasis: {
-        label: {
-          show: true,
-          fontSize: 16,
-          fontWeight: "bold",
-        },
+        show: true,
+        position: "outside",
+        formatter: "{b}: {d}%",
+        color: "#6b7280",
+        fontSize: 12,
       },
       labelLine: {
-        show: false,
+        show: true,
+        length: 15,
+        length2: 10,
+        lineStyle: {
+          color: "#e5e7eb",
+        },
+      },
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowColor: "rgba(0, 0, 0, 0.5)",
+        },
       },
       data: props.data,
     },
