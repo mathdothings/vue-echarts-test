@@ -67,7 +67,7 @@ onMounted(async () => {
 const pieOption = computed(() => ({
   tooltip: {},
   legend: {
-    bottom: 0,
+    bottom: 20,
     left: "center",
     itemWidth: 10,
     itemHeight: 10,
@@ -112,6 +112,6 @@ const pieOption = computed(() => ({
 
 <style scoped>
 .pie-chart {
-  height: clamp(300px, 30vh, 600px);
+  height: clamp(400px, 30vh, 600px);
 }
 </style>

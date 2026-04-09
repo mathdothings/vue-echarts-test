@@ -66,7 +66,7 @@ import PeakHoursHeatmap from "../components/charts/PeakHoursHeatmapChart.vue";
         />
       </div>
       <ConversionFunnelChart
-        title="Funil de Vendas (Loja Centro)"
+        title="Funil de Vendas"
         :data="[
           { value: 100, name: 'Visitas' },
           { value: 60, name: 'Atendimento' },

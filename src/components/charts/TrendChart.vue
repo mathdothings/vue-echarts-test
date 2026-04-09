@@ -63,6 +63,12 @@ const lineOption = computed(() => ({
       return `${item.name}<br/><b>${formatValue(item.value, props.isMonetary)}</b>`;
     },
   },
+  grid: {
+    top: 30,
+    left: props.isMonetary ? 100 : 20,
+    right: 20,
+    bottom: 40,
+  },
   xAxis: {
     type: "category",
     data: props.categories,

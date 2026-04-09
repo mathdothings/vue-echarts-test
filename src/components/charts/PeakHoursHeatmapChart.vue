@@ -70,6 +70,12 @@ onMounted(async () => {
 
 const heatmapOption = computed(() => ({
   tooltip: { position: "top" },
+  grid: {
+    top: 30,
+    left: 80,
+    right: 20,
+    bottom: 40,
+  },
   xAxis: {
     type: "category",
     data: props.hours,
@@ -88,7 +94,7 @@ const heatmapOption = computed(() => ({
     calculable: false,
     orient: "horizontal",
     left: "center",
-    bottom: 0,
+    top: -10,
     inRange: { color: ["#eff6ff", "#3b82f6", "#1e3a8a"] }, // Blues
   },
   series: [
