@@ -24,6 +24,7 @@
 <script setup>
 import { ref, onMounted, nextTick, computed } from "vue";
 import { formatValue } from "../utils/format";
+import { CHART_PALETTE } from "../utils/theme";
 import { use } from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
 import { PieChart } from "echarts/charts";
@@ -103,7 +104,7 @@ const pieOption = computed(() => ({
       data: props.data,
     },
   ],
-  color: ["#3b82f6", "#10b981", "#6366f1", "#f59e0b", "#ef4444"],
+  color: CHART_PALETTE,
 }));
 </script>
 

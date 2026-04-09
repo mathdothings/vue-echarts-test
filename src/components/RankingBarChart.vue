@@ -24,6 +24,7 @@
 <script setup>
 import { ref, onMounted, nextTick, computed } from "vue";
 import { formatValue } from "../utils/format";
+import { CHART_PALETTE } from "../utils/theme";
 import { use } from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
 import { BarChart } from "echarts/charts";
@@ -49,7 +50,7 @@ const props = defineProps({
   },
   barColor: {
     type: String,
-    default: "#6366f1",
+    default: CHART_PALETTE[0],
   },
   isMonetary: {
     type: Boolean,
@@ -75,6 +76,7 @@ const sortedData = computed(() => {
 });
 
 const rankingOption = computed(() => ({
+  color: CHART_PALETTE,
   tooltip: {},
   grid: {
     top: "10%",
@@ -123,7 +125,7 @@ const rankingOption = computed(() => ({
         borderRadius: [0, 4, 4, 0],
       },
       emphasis: {
-        itemStyle: { color: "#4f46e5" },
+        itemStyle: { opacity: 0.8 },
       },
     },
   ],
