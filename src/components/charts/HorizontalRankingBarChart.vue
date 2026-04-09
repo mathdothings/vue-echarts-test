@@ -134,6 +134,6 @@ const rankingOption = computed(() => ({
 
 <style scoped>
 .ranking-chart {
-  min-height: 350px;
+  height: clamp(300px, 30vh, 600px);
 }
 </style>

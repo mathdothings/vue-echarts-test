@@ -121,6 +121,6 @@ const barOption = computed(() => ({
 
 <style scoped>
 .bar-chart {
-  min-height: 400px;
+  height: clamp(300px, 30vh, 600px);
 }
 </style>

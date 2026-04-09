@@ -3,11 +3,14 @@ import MetricGauge from "../components/charts/MetricGaugeChart.vue";
 import StoreBarChart from "../components/charts/VerticalRankingBarChart.vue";
 import RankingBarChart from "../components/charts/HorizontalRankingBarChart.vue";
 import DistributionPieChart from "../components/charts/DistributionPieChart.vue";
+import TrendChart from "../components/charts/TrendChart.vue";
+import ConversionFunnelChart from "../components/charts/ConversionFunnelChart.vue";
+import PeakHoursHeatmap from "../components/charts/PeakHoursHeatmapChart.vue";
 </script>
 
 <template>
   <main class="m-3 grid gap-3">
-    <!-- Linha 1: Indicadores e Distribuição -->
+    <!-- Row 1: Key Indicators & Distribution -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-3">
       <MetricGauge
         title="Faturamento Mensal"
@@ -33,7 +36,85 @@ import DistributionPieChart from "../components/charts/DistributionPieChart.vue"
       />
     </div>
 
-    <!-- Linha 2: Performance de Vendedores (Unidades vs Valor) -->
+    <!-- Row 2: Strategy (Trends & Conversion) -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-3">
+      <div class="lg:col-span-2">
+        <TrendChart
+          title="Evolução de Vendas Diária"
+          :is-monetary="true"
+          :categories="[
+            '01',
+            '02',
+            '03',
+            '04',
+            '05',
+            '06',
+            '07',
+            '08',
+            '09',
+            '10',
+            '11',
+            '12',
+            '13',
+            '14',
+            '15',
+          ]"
+          :data="[
+            420, 380, 510, 640, 590, 820, 950, 410, 390, 480, 520, 610, 740,
+            890, 1100,
+          ]"
+        />
+      </div>
+      <ConversionFunnelChart
+        title="Funil de Vendas (Loja Centro)"
+        :data="[
+          { value: 100, name: 'Visitas' },
+          { value: 60, name: 'Atendimento' },
+          { value: 40, name: 'Provador' },
+          { value: 18, name: 'Compra' },
+        ]"
+      />
+    </div>
+
+    <!-- Row 3: Operations (Peak Hours) -->
+    <PeakHoursHeatmap
+      title="Mapa de Calor: Fluxo de Clientes"
+      :days="[
+        'Segunda',
+        'Terça',
+        'Quarta',
+        'Quinta',
+        'Sexta',
+        'Sábado',
+        'Domingo',
+      ]"
+      :hours="['08h', '10h', '12h', '14h', '16h', '18h', '20h']"
+      :data="[
+        [0, 0, 15],
+        [0, 1, 20],
+        [0, 2, 45],
+        [0, 3, 30],
+        [0, 4, 35],
+        [0, 5, 50],
+        [0, 6, 25],
+        [4, 0, 20],
+        [4, 1, 35],
+        [4, 2, 80],
+        [4, 3, 55],
+        [4, 4, 60],
+        [4, 5, 95],
+        [4, 6, 40],
+        [5, 0, 40],
+        [5, 1, 65],
+        [5, 2, 90],
+        [5, 3, 85],
+        [5, 4, 95],
+        [5, 5, 100],
+        [5, 6, 70],
+      ]"
+    />
+
+    <!-- Row 4: Performance Rankings -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
       <RankingBarChart
         title="Melhores Vendedores (Unidades)"
@@ -47,7 +128,6 @@ import DistributionPieChart from "../components/charts/DistributionPieChart.vue"
       />
       <RankingBarChart
         title="Melhores Vendedores (Valor Gerado)"
-        bar-color="#3b82f6"
         :is-monetary="true"
         :data="[
           { name: 'Ricardo Silva', value: 22450 },
@@ -59,60 +139,31 @@ import DistributionPieChart from "../components/charts/DistributionPieChart.vue"
       />
     </div>
 
-    <!-- Linha 3: Produtos Mais Vendidos -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-      <RankingBarChart
-        title="Produtos Mais Vendidos (Qtd)"
-        bar-color="#10b981"
-        :data="[
-          { name: 'Camiseta Básica', value: 420 },
-          { name: 'Calça Jeans Slim', value: 310 },
-          { name: 'Tênis Running', value: 280 },
-          { name: 'Jaqueta Couro', value: 150 },
-          { name: 'Boné Urban', value: 120 },
-        ]"
-      />
-      <StoreBarChart
-        title="Vendas por Categoria"
-        :categories="['Masculino', 'Feminino', 'Infantil', 'Acessórios']"
-        :stores="[
-          { name: 'Mês Atual', data: [850, 1120, 640, 420] },
-          { name: 'Mês Anterior', data: [780, 1050, 590, 380] },
-        ]"
-        :color-by-data="false"
-      />
-    </div>
-
-    <!-- Linha 4: Faturamento Semestral -->
-    <div class="grid grid-cols-1">
-      <StoreBarChart
-        title="Faturamento Semestral por Unidade"
-        :is-monetary="true"
-        :color-by-data="true"
-        :categories="['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun']"
-        :stores="[
-          {
-            name: 'Loja Matriz',
-            data: [25000, 28000, 26000, 31000, 35000, 38000],
-          },
-          {
-            name: 'Loja Centro',
-            data: [18000, 21000, 19000, 24000, 28000, 31000],
-          },
-          {
-            name: 'Loja Shopping',
-            data: [32000, 35000, 33000, 38000, 42000, 45000],
-          },
-          {
-            name: 'Loja Norte',
-            data: [12000, 14000, 13000, 16000, 19000, 21000],
-          },
-          {
-            name: 'Loja Sul',
-            data: [15000, 17000, 16000, 19000, 23000, 26000],
-          },
-        ]"
-      />
-    </div>
+    <!-- Row 5: Store Comparison -->
+    <StoreBarChart
+      title="Faturamento Semestral por Unidade"
+      :is-monetary="true"
+      :color-by-data="true"
+      :categories="['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun']"
+      :stores="[
+        {
+          name: 'Loja Matriz',
+          data: [25000, 28000, 26000, 31000, 35000, 38000],
+        },
+        {
+          name: 'Loja Centro',
+          data: [18000, 21000, 19000, 24000, 28000, 31000],
+        },
+        {
+          name: 'Loja Shopping',
+          data: [32000, 35000, 33000, 38000, 42000, 45000],
+        },
+        {
+          name: 'Loja Norte',
+          data: [12000, 14000, 13000, 16000, 19000, 21000],
+        },
+        { name: 'Loja Sul', data: [15000, 17000, 16000, 19000, 23000, 26000] },
+      ]"
+    />
   </main>
 </template>

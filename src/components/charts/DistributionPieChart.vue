@@ -112,6 +112,6 @@ const pieOption = computed(() => ({
 
 <style scoped>
 .pie-chart {
-  min-height: 350px;
+  height: clamp(300px, 30vh, 600px);
 }
 </style>
