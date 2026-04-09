@@ -89,7 +89,7 @@ const heatmapOption = computed(() => ({
     calculable: false,
     orient: "horizontal",
     left: "center",
-    bottom: "5%",
+    bottom: 0,
     inRange: { color: ["#eff6ff", "#3b82f6", "#1e3a8a"] }, // Blues
   },
   series: [

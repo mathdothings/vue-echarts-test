@@ -67,7 +67,7 @@ onMounted(async () => {
 const pieOption = computed(() => ({
   tooltip: {},
   legend: {
-    bottom: "5%",
+    bottom: 0,
     left: "center",
     itemWidth: 10,
     itemHeight: 10,

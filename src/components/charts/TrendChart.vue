@@ -68,7 +68,6 @@ const lineOption = computed(() => ({
     left: "5%",
     right: "5%",
     bottom: "10%",
-    containLabel: true,
   },
   xAxis: {
     type: "category",

@@ -79,6 +79,12 @@ onMounted(async () => {
 
 const barOption = computed(() => ({
   tooltip: {},
+  grid: {
+    top: "10%",
+    left: "15%",
+    right: "15%",
+    bottom: "20%",
+  },
   legend: {
     data: props.stores.map((s) => s.name),
     bottom: 20,

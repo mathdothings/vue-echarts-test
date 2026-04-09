@@ -80,10 +80,9 @@ const rankingOption = computed(() => ({
   tooltip: {},
   grid: {
     top: "10%",
-    left: "5%",
+    left: "15%",
     right: "15%",
     bottom: "10%",
-    containLabel: true,
   },
   xAxis: {
     type: "value",
