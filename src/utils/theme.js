@@ -14,6 +14,15 @@ export const CHART_PALETTE = [
 ];
 
 /**
+ * Standard text colors for chart elements
+ */
+export const TEXT_COLORS = {
+  primary: '#111827',   // Slate 900 - For titles and strong values
+  secondary: '#4b5563', // Slate 600 - For axis labels and descriptions
+  muted: '#9ca3af',     // Slate 400 - For legends and subtle info
+};
+
+/**
  * Gradient colors for Gauge progress bars
  */
 export const GAUGE_GRADIENT = {

@@ -33,7 +33,7 @@
 import { useNumericTween } from "../composables/useNumericTween";
 import { ref, onMounted, nextTick, computed } from "vue";
 import { formatValue, formatAsIntegerPercent } from "../utils/format";
-import { GAUGE_GRADIENT } from "../utils/theme";
+import { GAUGE_GRADIENT, TEXT_COLORS } from "../utils/theme";
 import { use } from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
 import { GaugeChart } from "echarts/charts";
@@ -137,7 +137,7 @@ const gaugeOption = computed(() => ({
       },
       axisLabel: {
         distance: 25,
-        color: "#000",
+        color: TEXT_COLORS.secondary,
         fontSize: 16,
         formatter: (value) => formatAsIntegerPercent(value),
       },
@@ -145,12 +145,18 @@ const gaugeOption = computed(() => ({
         valueAnimation: true,
         offsetCenter: [0, "20%"],
         formatter: (value) => formatAsIntegerPercent(value),
+        color: TEXT_COLORS.primary,
+        fontSize: 28,
+        fontWeight: "bold",
       },
       data: [
         {
           value: currentProgress.value,
         },
       ],
+      emphasis: {
+        itemStyle: { opacity: 0.8 },
+      },
     },
   ],
 }));

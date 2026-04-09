@@ -24,7 +24,7 @@
 <script setup>
 import { ref, onMounted, nextTick, computed } from "vue";
 import { formatValue } from "../utils/format";
-import { CHART_PALETTE } from "../utils/theme";
+import { CHART_PALETTE, TEXT_COLORS } from "../utils/theme";
 import { use } from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
 import { BarChart } from "echarts/charts";
@@ -85,20 +85,20 @@ const barOption = computed(() => ({
     itemWidth: 10,
     itemHeight: 10,
     icon: "circle",
-    textStyle: { color: "#9ca3af", fontSize: 12 },
+    textStyle: { color: TEXT_COLORS.muted, fontSize: 12 },
   },
   xAxis: {
     type: "category",
     data: props.categories,
     axisLine: { lineStyle: { color: "#e5e7eb" } },
     axisTick: { show: false },
-    axisLabel: { color: "#9ca3af", margin: 15 },
+    axisLabel: { color: TEXT_COLORS.secondary, margin: 15 },
   },
   yAxis: {
     type: "value",
     splitLine: { lineStyle: { type: "dashed", color: "#f3f4f6" } },
     axisLabel: {
-      color: "#9ca3af",
+      color: TEXT_COLORS.secondary,
       formatter: (value) => formatValue(value, props.isMonetary),
     },
   },
@@ -113,6 +113,9 @@ const barOption = computed(() => ({
     data: store.data,
   })),
   color: CHART_PALETTE,
+  emphasis: {
+    itemStyle: { opacity: 0.8 },
+  },
 }));
 </script>
 

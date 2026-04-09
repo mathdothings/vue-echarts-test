@@ -24,7 +24,7 @@
 <script setup>
 import { ref, onMounted, nextTick, computed } from "vue";
 import { formatValue } from "../utils/format";
-import { CHART_PALETTE } from "../utils/theme";
+import { CHART_PALETTE, TEXT_COLORS } from "../utils/theme";
 import { use } from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
 import { BarChart } from "echarts/charts";
@@ -97,7 +97,7 @@ const rankingOption = computed(() => ({
     data: sortedData.value.map((item) => item.name),
     axisLine: { show: false },
     axisTick: { show: false },
-    axisLabel: { color: "#6b7280", fontSize: 13, margin: 15 },
+    axisLabel: { color: TEXT_COLORS.secondary, fontSize: 13, margin: 15 },
   },
   series: [
     {
@@ -115,7 +115,7 @@ const rankingOption = computed(() => ({
         formatter: (params) => {
           return formatValue(params.value, props.isMonetary);
         },
-        color: "#111827",
+        color: TEXT_COLORS.primary,
         fontWeight: "bold",
         fontSize: 12,
       },

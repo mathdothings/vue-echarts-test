@@ -24,7 +24,7 @@
 <script setup>
 import { ref, onMounted, nextTick, computed } from "vue";
 import { formatValue } from "../utils/format";
-import { CHART_PALETTE } from "../utils/theme";
+import { CHART_PALETTE, TEXT_COLORS } from "../utils/theme";
 import { use } from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
 import { PieChart } from "echarts/charts";
@@ -72,7 +72,7 @@ const pieOption = computed(() => ({
     itemWidth: 10,
     itemHeight: 10,
     icon: "circle",
-    textStyle: { color: "#9ca3af", fontSize: 12 },
+    textStyle: { color: TEXT_COLORS.muted, fontSize: 12 },
   },
   series: [
     {
@@ -89,7 +89,7 @@ const pieOption = computed(() => ({
         show: true,
         position: "outside",
         formatter: "{b}: {d}%",
-        color: "#6b7280",
+        color: TEXT_COLORS.secondary,
         fontSize: 12,
       },
       labelLine: {
@@ -100,7 +100,9 @@ const pieOption = computed(() => ({
           color: "#e5e7eb",
         },
       },
-      emphasis: {},
+      emphasis: {
+        itemStyle: { opacity: 0.8 },
+      },
       data: props.data,
     },
   ],
