@@ -23,6 +23,7 @@
 
 <script setup>
 import { ref, onMounted, nextTick, computed } from "vue";
+import { formatValue } from "../utils/format";
 import { use } from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
 import { PieChart } from "echarts/charts";
@@ -45,6 +46,14 @@ const props = defineProps({
       { name: "Item D", value: 10 },
     ],
   },
+  isMonetary: {
+    type: Boolean,
+    default: false,
+  },
+  colorByData: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const renderChart = ref(false);
@@ -55,13 +64,7 @@ onMounted(async () => {
 });
 
 const pieOption = computed(() => ({
-  tooltip: {
-    trigger: "item",
-    backgroundColor: "rgba(255, 255, 255, 0.95)",
-    padding: [10, 15],
-    textStyle: { color: "#374151" },
-    formatter: "{b}: <b>{c}</b> ({d}%)",
-  },
+  tooltip: {},
   legend: {
     bottom: "5%",
     left: "center",
@@ -96,13 +99,7 @@ const pieOption = computed(() => ({
           color: "#e5e7eb",
         },
       },
-      emphasis: {
-        itemStyle: {
-          shadowBlur: 10,
-          shadowOffsetX: 0,
-          shadowColor: "rgba(0, 0, 0, 0.5)",
-        },
-      },
+      emphasis: {},
       data: props.data,
     },
   ],

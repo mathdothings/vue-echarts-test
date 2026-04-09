@@ -23,6 +23,7 @@
 
 <script setup>
 import { ref, onMounted, nextTick, computed } from "vue";
+import { formatValue } from "../utils/format";
 import { use } from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
 import { BarChart } from "echarts/charts";
@@ -50,7 +51,17 @@ const props = defineProps({
     type: String,
     default: "#6366f1",
   },
+  isMonetary: {
+    type: Boolean,
+    default: false,
+  },
+  colorByData: {
+    type: Boolean,
+    default: false,
+  },
 });
+
+// Removed local currencyFormatter
 
 const renderChart = ref(false);
 
@@ -68,7 +79,7 @@ const rankingOption = computed(() => ({
   grid: {
     top: "10%",
     left: "5%",
-    right: "10%",
+    right: "15%",
     bottom: "10%",
     containLabel: true,
   },
@@ -89,19 +100,22 @@ const rankingOption = computed(() => ({
   series: [
     {
       type: "bar",
+      colorBy: props.colorByData ? "data" : "series",
       data: sortedData.value.map((item) => item.value),
       barMaxWidth: 20,
       itemStyle: {
         borderRadius: [0, 4, 4, 0],
-        color: props.barColor,
+        color: props.colorByData ? undefined : props.barColor,
       },
       label: {
         show: true,
         position: "right",
-        formatter: "{c}",
+        formatter: (params) => {
+          return formatValue(params.value, props.isMonetary);
+        },
         color: "#111827",
         fontWeight: "bold",
-        fontSize: 13,
+        fontSize: 12,
       },
       showBackground: true,
       backgroundStyle: {

@@ -23,6 +23,7 @@
 
 <script setup>
 import { ref, onMounted, nextTick, computed } from "vue";
+import { formatValue } from "../utils/format";
 import { use } from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
 import { BarChart } from "echarts/charts";
@@ -58,6 +59,14 @@ const props = defineProps({
       { name: "Loja 3", data: [820, 832, 901, 934, 1290, 1330] },
     ],
   },
+  isMonetary: {
+    type: Boolean,
+    default: false,
+  },
+  colorByData: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const renderChart = ref(false);
@@ -87,18 +96,21 @@ const barOption = computed(() => ({
   yAxis: {
     type: "value",
     splitLine: { lineStyle: { type: "dashed", color: "#f3f4f6" } },
-    axisLabel: { color: "#9ca3af" },
+    axisLabel: {
+      color: "#9ca3af",
+      formatter: (value) => formatValue(value, props.isMonetary),
+    },
   },
   series: props.stores.map((store) => ({
     name: store.name,
     type: "bar",
+    colorBy: props.colorByData ? "series" : undefined,
     barMaxWidth: 15,
     itemStyle: {
       borderRadius: [4, 4, 0, 0],
     },
     data: store.data,
   })),
-  color: ["#3b82f6", "#10b981", "#6366f1"], // Modern palette
 }));
 </script>
 

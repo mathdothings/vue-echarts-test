@@ -31,7 +31,8 @@
 
 <script setup>
 import { useNumericTween } from "../composables/useNumericTween";
-import { ref, onMounted, nextTick, computed, watch } from "vue";
+import { ref, onMounted, nextTick, computed } from "vue";
+import { formatValue, formatAsIntegerPercent } from "../utils/format";
 import { use } from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
 import { GaugeChart } from "echarts/charts";
@@ -59,6 +60,10 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  colorByData: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 use([
@@ -80,27 +85,17 @@ onMounted(async () => {
 const displayTotal = useNumericTween(() => props.currentAmount);
 
 const formattedTotal = computed(() => {
-  return props.isMonetary
-    ? currencyFormatter.format(displayTotal.value)
-    : Math.floor(displayTotal.value).toLocaleString();
+  return formatValue(displayTotal.value, props.isMonetary);
 });
 
 const formattedGoal = computed(() => {
-  return props.isMonetary
-    ? currencyFormatter.format(props.totalGoal)
-    : props.totalGoal.toLocaleString();
+  return formatValue(props.totalGoal, props.isMonetary);
 });
 
 // Automatically calculates the 0-100 percentage for ECharts
 const currentProgress = computed(() => {
   if (!props.totalGoal) return 0;
   return (props.currentAmount / props.totalGoal) * 100;
-});
-
-const currencyFormatter = new Intl.NumberFormat("pt-BR", {
-  style: "currency",
-  currency: "BRL",
-  maximumFractionDigits: 2,
 });
 
 const gaugeOption = computed(() => ({
@@ -143,12 +138,12 @@ const gaugeOption = computed(() => ({
         distance: 25,
         color: "#000",
         fontSize: 16,
-        formatter: "{value}%",
+        formatter: (value) => formatAsIntegerPercent(value),
       },
       detail: {
         valueAnimation: true,
         offsetCenter: [0, "20%"],
-        formatter: "{value}%",
+        formatter: (value) => formatAsIntegerPercent(value),
       },
       data: [
         {
