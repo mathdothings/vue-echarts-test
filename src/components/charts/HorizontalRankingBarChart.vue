@@ -78,12 +78,6 @@ const sortedData = computed(() => {
 const rankingOption = computed(() => ({
   color: CHART_PALETTE,
   tooltip: {},
-  grid: {
-    top: "10%",
-    left: "15%",
-    right: "15%",
-    bottom: "10%",
-  },
   xAxis: {
     type: "value",
     splitLine: { show: false },
