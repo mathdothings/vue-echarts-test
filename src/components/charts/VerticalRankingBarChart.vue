@@ -14,7 +14,7 @@
     </div>
     <VChart
       v-if="renderChart"
-      class="w-full h-[400px] bar-chart"
+      class="w-full h-full bar-chart"
       :option="barOption"
       :autoresize="true"
     />

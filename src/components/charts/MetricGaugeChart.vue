@@ -22,7 +22,7 @@
     </div>
     <VChart
       v-if="renderChart"
-      class="w-full aspect-video gauge-chart"
+      class="w-full h-full gauge-chart"
       :option="gaugeOption"
       :autoresize="true"
     />

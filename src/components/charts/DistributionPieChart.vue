@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative flex flex-col border border-neutral-200 rounded-xl bg-white shadow-sm overflow-hidden"
+    class="relative flex flex-col border border-neutral-200 rounded-xl bg-white shadow-sm overflow-hidden h-full"
   >
     <div
       class="pt-6 px-6 flex flex-col items-start pointer-events-none"
@@ -14,7 +14,7 @@
     </div>
     <VChart
       v-if="renderChart"
-      class="w-full h-[350px] pie-chart"
+      class="w-full h-full pie-chart"
       :option="pieOption"
       :autoresize="true"
     />
@@ -112,6 +112,6 @@ const pieOption = computed(() => ({
 
 <style scoped>
 .pie-chart {
-  height: clamp(400px, 30vh, 600px);
+  height: clamp(400px, 40vh, 700px);
 }
 </style>

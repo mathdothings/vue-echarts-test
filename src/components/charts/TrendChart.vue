@@ -14,7 +14,7 @@
     </div>
     <VChart
       v-if="renderChart"
-      class="w-full h-[350px] trend-chart"
+      class="w-full h-full trend-chart"
       :option="lineOption"
       :autoresize="true"
     />

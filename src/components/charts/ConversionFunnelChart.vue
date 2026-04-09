@@ -14,7 +14,7 @@
     </div>
     <VChart
       v-if="renderChart"
-      class="w-full h-[350px] funnel-chart"
+      class="w-full h-full funnel-chart"
       :option="funnelOption"
       :autoresize="true"
     />

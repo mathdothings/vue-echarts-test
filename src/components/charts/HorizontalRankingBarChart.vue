@@ -14,7 +14,7 @@
     </div>
     <VChart
       v-if="renderChart"
-      class="w-full h-[350px] ranking-chart"
+      class="w-full h-full ranking-chart"
       :option="rankingOption"
       :autoresize="true"
     />
@@ -120,8 +120,7 @@ const rankingOption = computed(() => ({
       },
       showBackground: true,
       backgroundStyle: {
-        color: "rgba(243, 244, 246, 0.5)",
-        borderRadius: [0, 4, 4, 0],
+        opacity: 0,
       },
       emphasis: {
         itemStyle: { opacity: 0.8 },

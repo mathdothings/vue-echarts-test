@@ -14,7 +14,7 @@
     </div>
     <VChart
       v-if="renderChart"
-      class="w-full h-[400px] heatmap-chart"
+      class="w-full h-full heatmap-chart"
       :option="heatmapOption"
       :autoresize="true"
     />
@@ -89,6 +89,7 @@ const heatmapOption = computed(() => ({
     axisLabel: { color: TEXT_COLORS.secondary },
   },
   visualMap: {
+    show: false,
     min: 0,
     max: 100,
     calculable: false,
@@ -99,7 +100,7 @@ const heatmapOption = computed(() => ({
   },
   series: [
     {
-      name: "Movement",
+      name: "Detalhes",
       type: "heatmap",
       data: props.data,
       label: { show: false },
