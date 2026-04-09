@@ -81,13 +81,13 @@ const barOption = computed(() => ({
   tooltip: {},
   grid: {
     top: "10%",
-    left: "15%",
-    right: "15%",
+    left: "10%",
+    right: "10%",
     bottom: "20%",
   },
   legend: {
     data: props.stores.map((s) => s.name),
-    bottom: 20,
+    bottom: 5,
     itemWidth: 10,
     itemHeight: 10,
     icon: "circle",

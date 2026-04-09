@@ -65,8 +65,8 @@ const lineOption = computed(() => ({
   },
   grid: {
     top: "15%",
-    left: "5%",
-    right: "5%",
+    left: "10%",
+    right: "10%",
     bottom: "10%",
   },
   xAxis: {
