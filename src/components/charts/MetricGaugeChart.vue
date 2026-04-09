@@ -30,10 +30,10 @@
 </template>
 
 <script setup>
-import { useNumericTween } from "../composables/useNumericTween";
+import { useNumericTween } from "../../composables/useNumericTween";
 import { ref, onMounted, nextTick, computed } from "vue";
-import { formatValue, formatAsIntegerPercent } from "../utils/format";
-import { GAUGE_GRADIENT, TEXT_COLORS } from "../utils/theme";
+import { formatValue, formatAsIntegerPercent } from "../../utils/format";
+import { GAUGE_GRADIENT, TEXT_COLORS } from "../../utils/theme";
 import { use } from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
 import { GaugeChart } from "echarts/charts";

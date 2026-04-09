@@ -1,8 +1,8 @@
 <script setup>
-import MetricGauge from "../components/MetricGauge.vue";
-import StoreBarChart from "../components/StoreBarChart.vue";
-import RankingBarChart from "../components/RankingBarChart.vue";
-import DistributionPieChart from "../components/DistributionPieChart.vue";
+import MetricGauge from "../components/charts/MetricGaugeChart.vue";
+import StoreBarChart from "../components/charts/VerticalRankingBarChart.vue";
+import RankingBarChart from "../components/charts/HorizontalRankingBarChart.vue";
+import DistributionPieChart from "../components/charts/DistributionPieChart.vue";
 </script>
 
 <template>
